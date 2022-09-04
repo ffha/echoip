@@ -2,6 +2,7 @@
 FROM golang:bullseye AS build
 WORKDIR /go/src/github.com/mpolden/echoip
 COPY . .
+ENV CGO_ENABLED=0
 ENV GO111MODULE=on
 RUN make
 
