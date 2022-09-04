@@ -1,8 +1,8 @@
 # Build
-FROM golang:1.18-alpine AS build
+FROM golang:alpine AS build
 WORKDIR /go/src/github.com/mpolden/echoip
 COPY . .
-
+RUN apk add --no-cache build-base make bash
 ENV GO111MODULE=on
 RUN make
 
@@ -10,8 +10,8 @@ RUN make
 FROM alpine
 EXPOSE 8080
 
-COPY --from=build /go/bin/echoip /opt/echoip/
-COPY html /opt/echoip/html
+COPY --from=build /go/bin/echoip /app/echoip
+COPY html /app/html
 
 WORKDIR /opt/echoip
 ENTRYPOINT ["/opt/echoip/echoip"]
