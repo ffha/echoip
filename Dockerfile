@@ -13,4 +13,4 @@ COPY --from=build /go/bin/echoip /app/echoip
 COPY html /app/html
 
 WORKDIR /opt/echoip
-ENTRYPOINT ["/opt/echoip/echoip"]
+ENTRYPOINT ["/app/echoip"]
