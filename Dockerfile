@@ -1,13 +1,12 @@
 # Build
-FROM golang:alpine AS build
+FROM golang:bullseye AS build
 WORKDIR /go/src/github.com/mpolden/echoip
 COPY . .
-RUN apk add --no-cache build-base make bash
 ENV GO111MODULE=on
 RUN make
 
 # Run
-FROM alpine
+FROM debian:stable-slim
 EXPOSE 8080
 
 COPY --from=build /go/bin/echoip /app/echoip
