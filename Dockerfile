@@ -15,4 +15,4 @@ COPY --from=build /go/bin/echoip /opt/echoip/
 COPY html /opt/echoip/html
 
 WORKDIR /opt/echoip
-CMD /opt/echoip/echoip -H X-Real-IP
+CMD /opt/echoip/echoip -H X-forwarded-for
