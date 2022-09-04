@@ -15,4 +15,4 @@ COPY --from=build /go/bin/echoip /opt/echoip/
 COPY html /opt/echoip/html
 
 WORKDIR /opt/echoip
-ENTRYPOINT ["/opt/echoip/echoip"]
+CMD /opt/echoip/echoip -H X-Real-IP
